@@ -1,0 +1,199 @@
+﻿body {
+    background-color: rgb(255, 255, 255);
+}
+p {
+    text-align:center;
+    width:100%;
+}
+
+h1 {
+    text-shadow: 1px 1px 1px;
+    letter-spacing: 1px;
+    color: #000000;
+    display:inline-block;
+    text-align: center;
+    line-height:300px;
+    font-family: sans-serif;
+    width:100%;
+    height:200px;
+}
+
+html {
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: hidden;
+
+    font-family: sans-serif;
+
+}
+
+body {
+
+    width: 100%;
+
+    height: 100%;
+
+    font-family: 'Open Sans', sans-serif;
+
+    margin: 0;
+
+    background-color: #ffffff;
+
+}
+
+#login {
+
+    position: absolute;
+
+    top: 50%;
+
+    left: 50%;
+
+    margin: -150px 0 0 -150px;
+
+    width: 300px;
+
+    height: 300px;
+
+}
+
+#login h1 {
+
+    color: #fff;
+
+    text-shadow: 0 0 10px;
+
+    letter-spacing: 1px;
+
+    text-align: center;
+
+}
+
+input {
+
+    width: 278px;
+
+    height: 18px;
+
+    margin-bottom: 10px;
+
+    outline: none;
+
+    padding: 10px;
+
+    font-size: 13px;
+
+    color: #000000;
+
+    border-top: 2px solid rgb(49, 46, 61);
+
+    border-left: 2px solid #312E3D;
+
+    border-right: 2px solid #312E3D;
+
+    border-bottom: 2px solid #56536A;
+
+    border-radius: 4px;
+
+    background-color: #ffffff;
+
+}
+
+.select {
+
+    width: 278px;
+
+    height: 108px;
+
+    margin-bottom: 10px;
+
+    outline: none;
+
+    padding: 10px;
+
+    font-size: 13px;
+
+    color: #000000;
+
+    border-top: 2px solid rgb(49, 46, 61);
+
+    border-left: 2px solid #312E3D;
+
+    border-right: 2px solid #312E3D;
+
+    border-bottom: 2px solid #56536A;
+
+    border-radius: 4px;
+
+    background-color: #9bb3ff;
+
+}
+
+.but {
+
+    width: 300px;
+
+    min-height: 20px;
+
+    display: inline-block;
+
+    background-color: #4a77d4;
+
+    border: 1px solid #3762bc;
+
+    color: #fff;
+
+    padding: 15px 20px;
+
+    font-size: 15px;
+
+    line-height: normal;
+
+    border-radius: 5px;
+
+    margin: 0;
+
+}
+.but:hover{
+    background-color: #3166d3;
+    text-decoration: none;
+    border-style: inset;
+}
+p {
+    text-align: center;
+}
+
+div {
+    width:100%;
+    text-align: center;
+    padding:10px 0 10px 0;
+}
+
+
+input {
+    border-radius: 5px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.special{
+    display: inline-block;
+    color:white;
+    background-color: #2e98ff;
+    text-align:center;
+    width:100px;
+    min-height:20px;
+    border-radius:6%;
+    position:absolute;
+    top:10px;
+    right:30px;
+}
+a:hover {
+    text-decoration: none;
+    font-size: 90%;
+}
