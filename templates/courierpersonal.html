@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content%}
+<div>
+    <div class="container">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">个人信息</div>
+            <!-- Table -->
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>员工编号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>手机号</th>
+                    <th>工作范围</th>
+                    <th>月薪</th>
+                    <th>实时奖金</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                            <td>{{ item.cid }}</td>
+                            <td>{{ item.cname }}</td>
+                            <td>{{ item.csex }}</td>
+                            <td>{{ item.cphone }}</td>
+                            <td>{{ item.clocation }}</td>
+                            <td>{{ item.cmoney }}</td>
+                            <td>{{ item.csalary }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

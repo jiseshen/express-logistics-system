@@ -1,0 +1,37 @@
+{% extends 'user_navigator.html' %}
+{% block user_nav %}
+    <div class="container">
+        <div style="margin-bottom: 10px">
+            <a class="btn btn-primary" href={% url "identity_register"  id %}>
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                新增身份
+            </a>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">身份信息管理</div>
+
+            <table class="table">{% if identities %}
+                <tr>
+                    <td>身份标识</td>
+                    <td>姓名</td>
+                    <td>手机</td>
+                    <td>地址</td>
+                    <td>操作</td>
+                </tr>
+                {% for obj in identities %}
+                    <tr>
+                        <td>{{ obj.iset }}</td>
+                        <td>{{ obj.iname }}</td>
+                        <td>{{ obj.iphone }}</td>
+                        <td>{{ obj.iaddress }}</td>
+                        <td><a href={% url "identity_edit" obj.iid %}>
+                            <button type="button" class="btn btn-default btn-sm">修改</button>
+                        </a><a href={% url "identity_delete" obj.iid %}>
+                            <button type="button" class="btn btn-danger btn-sm">删除</button>
+                        </a></td>
+                    </tr>{% endfor %}
+            {% else %}<p>&nbsp;&nbsp;暂无</p>{% endif %}</table>
+
+        </div>
+    </div>
+{% endblock %}

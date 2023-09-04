@@ -1,0 +1,68 @@
+{% extends "superlayout.html" %}
+
+{% block admin_nav %}
+    <div>
+        <div class="container">
+            <div style="margin-bottom: 10px">
+                <a class="btn btn-primary" href={% url "add_staff"  id %}>
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                    新增人员
+                </a>
+            </div>
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">货车司机管理</div>
+
+                <!-- Table -->
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>司机编号</th>
+                        <th>姓名</th>
+                        <th>性别</th>
+                        <th>月薪</th>
+                        <th>来往区域</th>
+                        <th>油价补贴</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if item %}
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>{{ item.did }}</td>
+                            <td>{{ item.dname }}</td>
+                            <td>{{ item.dsex }}</td>
+                            <td>{{ item.dsalary }}</td>
+                            <td>{% for i in item.ddeparture %}{{ i }}{% endfor %}--{% for i in item.ddestination %}{{ i }}{% endfor %}</td>
+                            <td>{{ item.dcompensation }}</td>
+                            <td>
+                                <a class="btn btn-primary" href={% url 'staff_edit' item.did id '货车司机' %}>编辑</a>
+                                <a class="btn btn-danger" href={% url 'delete_staff' item.did id '货车司机' %}>删除</a>
+                            </td>
+                        </tr>
+                        {% else %}<td> 暂无</td>
+                    {% endif %}
+                    </tbody>
+                </table></div>
+{#            <div style="text-align: center"><nav style='display: inline-block' aria-label="Page navigation">#}
+{#      <ul class="pagination">#}
+{#        <li>#}
+{#            {% if driver.has_previous %}<a aria-label="Previous" href={% url 'driver_info' id driver.previous_page_number %}><span aria-hidden="true">&laquo;</span></a>#}
+{#            {% else %}<a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>{% endif %}#}
+{#        </li>#}
+{#          {% for p in page_range %}#}
+{#              {% if p == driver.number or p == '...' %}<li><a>{{ p }}</a></li>{% else %}<li><a href={% url 'driver_info' id p %}>{{ p }}</a></li>{% endif %}{% endfor %}#}
+{#        <li>#}
+{#            {% if driver.has_next %}<a aria-label="Next" href={% url 'driver_info' id driver.next_page_number %}><span aria-hidden="true">&raquo;</span></a>#}
+{#            {% else %}<a aria-label="Next"><span aria-hidden="true">&raquo;</span></a>{% endif %}#}
+{#        </li>#}
+{#    </ul>#}
+{#    </nav>#}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

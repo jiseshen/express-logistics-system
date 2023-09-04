@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>驿站查询</title>
+    <link rel="stylesheet" href="/static/css/Main.css">
+</head>
+<body style="background:url('/static/img/station.jpg')no-repeat center center fixed;
+                /*兼容浏览器版本*/
+                -webkit-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;">
+<div style="margin-bottom: 6%"></div>
+<a class='special' style="font-family:sans-serif;font-size:20px" href={% url 'homepage' %}>返回</a>
+    <form style="background-color:rgb(256,256,256,0.85);border-radius: 30px;padding:5% 5% 10% 5%;" method="POST">
+    {% csrf_token %}
+    <h1 style="line-height: 100px;height:100px">驿站查询</h1>
+    <p>请选择地区</p>
+        <p><label>城市：</label><select style=width:100px id='city1' name="city" onchange="modify(this.value)"><option>--请选择--</option>{% for key in city %}<option value={{ key }}>{{ key }}</option>{% endfor %}</select></p>
+        <p><label>区县：</label><select style=width:100px id='district1' name="location"></select></p><br>
+        <p><button class="but" type="submit">查询</button></p>
+        <p>&emsp;{{ message }}&emsp;</p>
+    </form>
+
+</body>
+</html>
+ <script type="text/javascript">
+                function modify(val){
+                    var mapdic={};
+                    {% for m,n in map.items %}
+                    mapdic["{{ m }}"]=[];
+                    {% for items in n %}mapdic["{{m}}"].push("{{ items }}")
+                        {% endfor %}
+                    {% endfor %}
+                    var district_list=mapdic[val];
+                    var target=document.getElementById('district1');
+                    var options=target.getElementsByTagName("option");
+
+                    while(options.length){
+                        target.removeChild(options[0]);
+                    }
+                    if (district_list){
+                        for (var i=0;i<district_list.length;i++){
+                            var option1=document.createElement("option");
+                            var text1=document.createTextNode(district_list[i]);
+                            option1.appendChild(text1);
+                            target.appendChild(option1);
+                        }
+                    }
+                }
+ </script>

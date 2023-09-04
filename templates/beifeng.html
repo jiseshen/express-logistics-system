@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ ID }}快递员界面</title>
+    <script>
+        function fetched(){
+            document.getElementById("demo").innerHTML="<h>已接收的上门取件单</h>"+
+                "{% if fetched %}<table border=1>{% for key in fetched.first().keys %}<tr><th>{% key %}</th>{% endfor %}</tr>{% for obj in list(fetched) %}<tr>{% for item in obj.values %}<td>{{ item }}</td>{% endfor %}</tr>{% endfor %}<table>"+
+            "{% else %}<p>暂无</p>{% endif %}"
+        }
+        function sent(){
+            document.getElementById("demo").innerHTML="<h>已接受的派件单</h> " +
+                "{% if sent %}<table>{% for obj in sent %}<tr>{% for item in obj %}<td>{{ item }}</td>{% endfor %}</tr>{% endfor %}<table>"+
+            "{% else %}<p>暂无</p>{% endif %}"
+        }
+        function tofetch(){
+            document.getElementById("demo").innerHTML="<h>可以接受的上门取件单</h>"+
+                "{% if tofetch %}<table>{% for obj in tofetch %}<tr>{% for item in obj %}<td>{{ item }}</td>{% endfor %}</tr>{% endfor %}<table>"+
+            "{% else %}<p>暂无</p>{% endif %}"
+        }
+        function tosend(){
+            document.getElementById("demo").innerHTML="<h>可以接受的派件单</h> " +
+                "{% if tosend %}<table>{% for obj in tosend %}<tr>{% for item in obj %}<td>{{ item }}</td>{% endfor %}</tr>{% endfor %}<table>"+
+            "{% else %}<p>暂无</p>{% endif %}"
+        }
+    </script>
+</head>
+<body>
+    <button type="button" onclick="fetched()">已接收的上门取件单</button>
+    <button type="button" onclick="sent()">已接受的派件单</button>
+    <button type="button" onclick="tofetch()">可以接受的上门取件单</button>
+    <button type="button" onclick="tosend()">可以接受的派件单</button>
+    <p id="demo"></p>
+</body>
+</html>

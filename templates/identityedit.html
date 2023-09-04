@@ -1,0 +1,63 @@
+{% extends 'user_navigator.html' %}
+{% block user_nav %}
+<div class="container">
+    <div style="margin-bottom: 10px"></div>
+    <div class="panel panel-default">
+        <div class="panel-heading">修改身份</div>
+        <div>
+        <br>
+        <form class='form-horizontal' action="" method="post">
+            {% csrf_token %}
+            <div class="form-group"><label for="1" class="col-sm-2 control-label">身份标识：</label>
+                <div class="col-sm-3"><input id='1' type="text" class="form-control" name="set" value="{{ identity.iset }}"></div>
+            </div>
+            <p style="font-size:10px">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;注：身份标识是您在发起订单时选择的，与下列信息绑定的唯一标识。选择该身份标识，会默认您以该身份、地址寄出快递；为收件人选择身份标识，会默认以该身份、地址作为收件人信息。</p>
+            <div class="form-group"><label for="2" class="col-sm-2 control-label">手机：</label>
+                <div class="col-sm-3"><input id='2' type="text" class="form-control" name="phone" value="{{ identity.iphone }}"></div>
+            </div>
+            <div class="form-group"><label for='3' class="col-sm-2 control-label">称谓：</label>
+                <div class="col-sm-3"><input id='3' type="text" class="form-control" name="name" value="{{ identity.iname }}"></div>
+            </div>
+            <div class="form-group"><label for='city' class="col-sm-2 control-label">城市：</label>
+                <div class="col-sm-3"><select class="form-control" id='city' name="city" onchange="modify(this.value)">
+                    <option>--请选择--</option>{% for key in city %}
+                    <option value={{ key }}>{{ key }}</option>{% endfor %}</select></div>
+            </div>
+            <div class="form-group"><label for='district' class="col-sm-2 control-label">区县：</label>
+                <div class="col-sm-3"><select class="form-control" id='district' name="location" required="required"></select></div>
+            </div>
+            <div class="form-group"><label for="4" class="col-sm-2 control-label">详细地址：</label>
+                <div class="col-sm-3"><input id='4' type="text" class="form-control" name="address" value="{{ identity.iaddress }}"></div>
+            </div>
+            &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<input class='btn btn-primary' type="submit" value="确认添加"><br>
+                <p style="text-align: center">{{ error_msg }}</p><br>
+
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        function modify(val) {
+            var mapdic = {};
+            {% for m,n in map.items %}
+                mapdic["{{ m }}"] = [];
+                {% for items in n %}mapdic["{{m}}"].push("{{ items }}")
+                {% endfor %}
+            {% endfor %}
+            var district_list = mapdic[val];
+            var target = document.getElementById('district');
+            var options = target.getElementsByTagName("option");
+
+            while (options.length) {
+                target.removeChild(options[0]);
+            }
+            if (district_list) {
+                for (var i = 0; i < district_list.length; i++) {
+                    var option1 = document.createElement("option");
+                    var text1 = document.createTextNode(district_list[i]);
+                    option1.appendChild(text1);
+                    target.appendChild(option1);
+                }
+            }
+        }
+    </script>
+{% endblock %}

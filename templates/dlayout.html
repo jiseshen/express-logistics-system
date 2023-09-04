@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>货车司机工作面板</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.css' %}">
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">货车司机个人界面</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href={% url "driver_page" id 1 %}>已接单</a></li>
+                <li><a href={% url "dmore_packages" id 1 %}>继续接单</a></li>
+
+
+
+            </ul>
+{#            <form class="navbar-form navbar-left">#}
+{#                <div class="form-group">#}
+{#                    <input type="text" class="form-control" placeholder="Search">#}
+{#                </div>#}
+{#                <button type="submit" class="btn btn-default">Submit</button>#}
+{#            </form>#}
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">{{ id }}号货车司机 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href={% url "driver_personal" id %}>个人信息</a></li>
+                        <li><a href={% url "staff_change" %}>修改密码</a></li>
+                        <li><a href={% url "change_place" id %}>修改所在地</a></li>
+                        <li><a href={% url "dpackages_hist" id 1 %}>历史接单</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/staff/login">注销</a></li>
+                    </ul>
+                </li>
+            </ul>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div>
+    {% block content %}{% endblock %}
+</div>
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-3.4.1/js/bootstrap.js' %}"></script>
+
+</body>
+</html>

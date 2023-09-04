@@ -1,0 +1,51 @@
+{% extends "dlayout.html" %}
+
+{% block content %}
+<div>
+    <div class="container">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">已接收单</div>
+
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>包裹编号</th>
+                    <th>重量</th>
+                    <th>大小</th>
+                    <th>交付时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in fetched %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ item.pid }}</td>
+                            <td>{{ item.weight }}</td>
+                            <td>{{ item.size }}</td>
+                            <td>{{ item.send_time }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+       <div style="text-align: center"><nav style="display: inline-block" aria-label="Page navigation">
+      <ul class="pagination">
+        <li>
+            {% if package.has_previous %}<a aria-label="Previous" href={% url "driver_page" id package.previous_page_number %}><span aria-hidden="true">&laquo;</span></a>
+            {% else %}<a aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>{% endif %}
+        </li>
+          {% for p in page_range %}
+              {% if p == package.number or p == '...' %}<li><a>{{ p }}</a></li>{% else %}<li><a href={% url 'driver_page' id p %}>{{ p }}</a></li>{% endif %}{% endfor %}
+        <li>
+            {% if package.has_next %}<a aria-label="Next" href={% url 'driver_page' id package.next_page_number %}><span aria-hidden="true">&raquo;</span></a>
+            {% else %}<a aria-label="Next"><span aria-hidden="true">&raquo;</span></a>{% endif %}
+        </li>
+    </ul>
+    </nav>
+            </div>
+    </div>
+</div>>
+{% endblock %}

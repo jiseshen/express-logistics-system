@@ -1,0 +1,39 @@
+{% extends "dlayout.html" %}
+{% block content%}
+<div>
+    <div class="container">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">个人信息</div>
+            <!-- Table -->
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>员工编号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>手机号</th>
+                    <th>目前所在地</th>
+                    <th>货运目的地</th>
+                    <th>月薪</th>
+                    <th>实时油价补贴</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                            <td>{{ item.did }}</td>
+                            <td>{{ item.dname }}</td>
+                            <td>{{ item.dsex }}</td>
+                            <td>{{ item.dphone }}</td>
+                            <td>{{ item.ddeparture }}</td>
+                            <td>{{ item.ddestination }}</td>
+                            <td>{{ item.dsalary }}</td>
+                            <td>{{ item.dcompensation }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

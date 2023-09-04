@@ -1,0 +1,181 @@
+{% extends "superlayout.html" %}
+{% block admin_nav %}
+    <div>
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">新增人员</h3>
+                </div>
+                <div class="panel-body">
+                    <p style="color: red">{{ error_msg }}<p/>
+                    <form class="form-horizontal" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">姓名</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="请输入姓名" name="name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">性别</label>
+                            <div class="col-sm-7">
+                                <p>
+                                    <label>
+                                        <select class="form-control" name="sex">
+                                            <option>男</option>
+                                            <option>女</option>
+                                        </select>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">手机号(账号）</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="请输入手机号" name="phone">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">职业</label>
+                            <div class="col-sm-7">
+                                <p>
+                                    <label>
+                                        <select class="form-control" name="who" id="type" onchange="hideifnotdriver(this.value)">
+                                            <option value=1>快递员</option>
+                                            <option value=2>货车司机</option>
+                                            <option value=3>驿站管理员</option>
+                                        </select>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">工作城市(出发城市)</label>
+                            <div class="col-sm-7">
+                                <p>
+                                    <label>
+                                        <select class="form-control" name="depacity" id="city1" onchange="modify1(this.value)">
+                                            <option>--请选择--</option>{% for key in city %}
+                                            <option value={{ key }}>{{ key }}</option>{% endfor %}
+                                        </select>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">工作区(出发区)</label>
+                            <div class="col-sm-7">
+                                <p>
+                                    <label>
+                                        <select class="form-control" name="depadist" id="district1">
+                                        </select>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group" id="fordriver">
+                            <label class="col-sm-2 control-label">目的地城市</label>
+                            <div class="col-sm-7">
+                                <p>
+                                    <label>
+                                        <select class="form-control" name="destcity" id="city2" onchange="modify2(this.value)">
+                                            <option>--请选择--</option>{% for key in city %}
+                                            <option value={{ key }}>{{ key }}</option>{% endfor %}
+                                        </select>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group" id="alsofordriver">
+                            <label class="col-sm-2 control-label">目的地区</label>
+                            <div class="col-sm-7">
+                                <p>
+                                    <label>
+                                        <select class="form-control" name="destdist" id="district2">
+                                        </select>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">暂定月薪</label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" placeholder="输入暂定月薪"
+                                       name="salary">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">确认添加</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript">
+    function hideifnotdriver(value) {
+        var fordriver = document.getElementById('fordriver');
+        var alsofordriver = document.getElementById('alsofordriver');
+        if (value != 2) {
+            fordriver.style.visibility = 'hidden';
+            alsofordriver.style.visibility='hidden';
+        }
+        if(value == 2){
+            fordriver.style.visibility='visible';
+            alsofordriver.style.visibility='visible';
+        }
+    }
+
+        function modify2(val) {
+            var mapdic = {};
+            {% for m,n in map.items %}
+                mapdic["{{ m }}"] = [];
+                {% for items in n %}mapdic["{{m}}"].push("{{ items }}")
+                {% endfor %}
+            {% endfor %}
+            var district_list = mapdic[val];
+            var target = document.getElementById('district2');
+            var options = target.getElementsByTagName("option");
+
+            while (options.length) {
+                target.removeChild(options[0]);
+            }
+            if (district_list) {
+                for (var i = 0; i < district_list.length; i++) {
+                    var option1 = document.createElement("option");
+                    var text1 = document.createTextNode(district_list[i]);
+                    option1.appendChild(text1);
+                    target.appendChild(option1);
+                }
+            }
+        }
+
+        function modify1(val) {
+            var mapdic = {};
+            {% for m,n in map.items %}
+                mapdic["{{ m }}"] = [];
+                {% for items in n %}mapdic["{{m}}"].push("{{ items }}")
+                {% endfor %}
+            {% endfor %}
+            var district_list = mapdic[val];
+            var target = document.getElementById('district1');
+            var options = target.getElementsByTagName("option");
+
+            while (options.length) {
+                target.removeChild(options[0]);
+            }
+            if (district_list) {
+                for (var i = 0; i < district_list.length; i++) {
+                    var option1 = document.createElement("option");
+                    var text1 = document.createTextNode(district_list[i]);
+                    option1.appendChild(text1);
+                    target.appendChild(option1);
+                }
+            }
+        }
+    </script>
+{% endblock %}

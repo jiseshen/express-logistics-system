@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+{#<html lang="en" xmlns="http://www.w3.org/1999/xhtml">#}
+<head>
+    <meta charset="utf-8" />
+    <title>欢迎来到邯郸路某快运</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/Main.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/Home.css"/>
+</head>
+<body>
+    <div><a class="special" href={% url 'admin_login' %}>超管入口</a></div>
+    <p><h1>欢迎来到邯郸路某快运</h1></p>
+    <div><a class="but" href={% url 'user_login' %}>用户登录</a></div>
+    <div><a class="but" href={% url 'staff_login' %}>员工登录</a></div>
+    <div><a class="but" href={% url 'custom_service' %}>查询时效</a></div>
+    <div><a class="but" href={% url 'custom_station' %}>查询驿站</a></div>
+<ul style='opacity:50%' class="cb-slideshow">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+</html>

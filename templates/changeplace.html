@@ -1,0 +1,54 @@
+{% extends "dlayout.html" %}
+{% block content %}
+    <div>
+        <div class="container">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">当前地址信息</div>
+                <!-- Table -->
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>目前所在地</th>
+                        <th>货运目的地</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ dep }}</td>
+                        <td>{{ des }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">修改所在地</h3>
+                </div>
+                <div class="panel-body">
+                    <form class="form-horizontal" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">当前所在地</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control" placeholder="请输入当前所在地" name="newplace">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">确认修改</button>
+                            </div>
+                        </div>
+                    </form>
+                    <p>{{ error_msg }}<p/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
