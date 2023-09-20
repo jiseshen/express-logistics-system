@@ -81,12 +81,15 @@ WSGI_APPLICATION = '物流公司系统.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+# Please config your database
+
 DATABASES = {
     'default':{
         'ENGINE': "django.db.backends.mysql",
         'NAME': 'express',
-        'USER': 'root',
-        'PASSWORD': 'Jise246808642',
+        'USER': '',
+        'PASSWORD': '', 
         'HOST': '127.0.0.1',
         'PORT': 3306,
         'ATOMIC_REQUESTS': True,
